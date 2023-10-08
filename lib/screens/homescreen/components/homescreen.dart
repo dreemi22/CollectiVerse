@@ -1,4 +1,5 @@
 import 'package:collectiverse/Models/nfts.dart';
+import 'package:collectiverse/screens/detailScreen/detailscreen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -88,7 +89,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ...List.generate(
                     demoNfts1.length,
                     (index) => ProductCard(
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(context, DetailScreen.routeName,
+                            arguments: ProductDetails(nfts: demoNfts1[index]));
+                      },
                       nfts: demoNfts1[index],
                       width: width,
                     ),
@@ -97,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            
             SizedBox(
               height: 10,
             ),
@@ -107,7 +112,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ...List.generate(
                     demoNfts2.length,
                     (index) => ProductCard(
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(
+                          context,
+                          DetailScreen.routeName,
+                          arguments: ProductDetails(
+                            nfts: demoNfts2[index],
+                          ),
+                        );
+                      },
                       nfts: demoNfts2[index],
                       width: width,
                     ),
@@ -126,7 +139,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ...List.generate(
                     demoNfts3.length,
                     (index) => ProductCard(
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(
+                          context,
+                          DetailScreen.routeName,
+                          arguments: ProductDetails(
+                            nfts: demoNfts3[index],
+                          ),
+                        );
+                      },
                       nfts: demoNfts3[index],
                       width: width,
                     ),
@@ -145,7 +166,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ...List.generate(
                     demoNfts4.length,
                     (index) => ProductCard(
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(
+                          context,
+                          DetailScreen.routeName,
+                          arguments: ProductDetails(
+                            nfts: demoNfts4[index],
+                          ),
+                        );
+                      },
                       nfts: demoNfts4[index],
                       width: width,
                     ),
@@ -245,122 +274,125 @@ class _ProductCardState extends State<ProductCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade300,
-              offset: const Offset(
-                5.0,
-                5.0,
+      child: GestureDetector(
+        onTap: widget.press,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                offset: const Offset(
+                  5.0,
+                  5.0,
+                ),
+                blurRadius: 25.0,
+                spreadRadius: 2.0,
               ),
-              blurRadius: 25.0,
-              spreadRadius: 2.0,
-            ),
-            // BoxShadow(
-            //   color: Colors.grey.shade200,
-            //   offset: const Offset(
-            //     5.0,
-            //     5.0,
-            //   ),
-            //   blurRadius: 10.0,
-            //   spreadRadius: 20.0,
-            // ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Container(
-              height: 150,
-              width: 195,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      widget.nfts.images,
+              // BoxShadow(
+              //   color: Colors.grey.shade200,
+              //   offset: const Offset(
+              //     5.0,
+              //     5.0,
+              //   ),
+              //   blurRadius: 10.0,
+              //   spreadRadius: 20.0,
+              // ),
+            ],
+          ),
+          child: Column(
+            children: [
+              Container(
+                height: 150,
+                width: 195,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        widget.nfts.images,
+                      ),
+                      fit: BoxFit.fill,
                     ),
-                    fit: BoxFit.fill,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            widget.nfts.name,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Floor : ${widget.nfts.floor}ETH",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Total Volume : ${widget.nfts.volume}ETH",
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          widget.nfts.name,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Floor : ${widget.nfts.floor}ETH",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Total Volume : ${widget.nfts.volume}ETH",
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      wishListBool = !wishListBool;
-                      if (wishListBool) {
-                        //code for adding product to wishlist page
-                      }
-                    });
-                  },
-                  child: wishListBool == false
-                      ? Icon(
-                          Icons.favorite_outline,
-                          color: Colors.black,
-                        )
-                      : Icon(
-                          Icons.favorite,
-                          color: Colors.red,
-                        ),
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        wishListBool = !wishListBool;
+                        if (wishListBool) {
+                          //code for adding product to wishlist page
+                        }
+                      });
+                    },
+                    child: wishListBool == false
+                        ? Icon(
+                            Icons.favorite_outline,
+                            color: Colors.black,
+                          )
+                        : Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

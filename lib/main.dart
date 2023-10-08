@@ -1,5 +1,5 @@
+import 'package:collectiverse/routes.dart';
 import 'package:collectiverse/screens/signinscreen/signinscreen.dart';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: SigninScreen(),
+      routes: routes,
+      // home: DetailScreen(),
     );
   }
 }
