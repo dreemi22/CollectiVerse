@@ -1,4 +1,5 @@
 import 'package:collectiverse/Models/nfts.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -80,10 +81,80 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            // const SizedBox(
-            //   height: 10,
-            // ),
-
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ...List.generate(
+                    demoNfts1.length,
+                    (index) => ProductCard(
+                      press: () {},
+                      nfts: demoNfts1[index],
+                      width: width,
+                    ),
+                  ),
+                  ViewMoreCard(),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ...List.generate(
+                    demoNfts2.length,
+                    (index) => ProductCard(
+                      press: () {},
+                      nfts: demoNfts2[index],
+                      width: width,
+                    ),
+                  ),
+                  ViewMoreCard(),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ...List.generate(
+                    demoNfts3.length,
+                    (index) => ProductCard(
+                      press: () {},
+                      nfts: demoNfts3[index],
+                      width: width,
+                    ),
+                  ),
+                  ViewMoreCard(),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ...List.generate(
+                    demoNfts4.length,
+                    (index) => ProductCard(
+                      press: () {},
+                      nfts: demoNfts4[index],
+                      width: width,
+                    ),
+                  ),
+                  ViewMoreCard(),
+                ],
+              ),
+            ),
+/*
             GridView.builder(
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -107,11 +178,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: width,
                 );
               },
-            ),
+            ),*/
             SizedBox(
               height: 100,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ViewMoreCard extends StatelessWidget {
+  const ViewMoreCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 10, right: 10, top: 20),
+      child: Container(
+        height: 205,
+        width: 190,
+        decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            // image: DecorationImage(
+            //   image: AssetImage(
+            //     widget.nfts.images,
+            //   ),
+            //   fit: BoxFit.fill,
+            // ),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20))),
+        child: Icon(
+          Icons.add_circle_outline_rounded,
+          size: 100,
+          color: Colors.grey.shade600,
         ),
       ),
     );
@@ -134,6 +240,7 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   bool wishListBool = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -144,7 +251,7 @@ class _ProductCardState extends State<ProductCard> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.shade200,
+              color: Colors.grey.shade300,
               offset: const Offset(
                 5.0,
                 5.0,
@@ -152,22 +259,22 @@ class _ProductCardState extends State<ProductCard> {
               blurRadius: 25.0,
               spreadRadius: 2.0,
             ),
-            BoxShadow(
-              color: Colors.grey.shade200,
-              offset: const Offset(
-                5.0,
-                5.0,
-              ),
-              blurRadius: 10.0,
-              spreadRadius: 20.0,
-            ),
+            // BoxShadow(
+            //   color: Colors.grey.shade200,
+            //   offset: const Offset(
+            //     5.0,
+            //     5.0,
+            //   ),
+            //   blurRadius: 10.0,
+            //   spreadRadius: 20.0,
+            // ),
           ],
         ),
         child: Column(
           children: [
             Container(
               height: 150,
-              width: 300,
+              width: 195,
               decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
@@ -236,6 +343,9 @@ class _ProductCardState extends State<ProductCard> {
                   onTap: () {
                     setState(() {
                       wishListBool = !wishListBool;
+                      if (wishListBool) {
+                        //code for adding product to wishlist page
+                      }
                     });
                   },
                   child: wishListBool == false
@@ -355,3 +465,126 @@ return GestureDetector(
 
 
 */
+/*
+
+
+  return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              offset: const Offset(
+                5.0,
+                5.0,
+              ),
+              blurRadius: 25.0,
+              spreadRadius: 2.0,
+            ),
+            BoxShadow(
+              color: Colors.grey.shade200,
+              offset: const Offset(
+                5.0,
+                5.0,
+              ),
+              blurRadius: 10.0,
+              spreadRadius: 20.0,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Container(
+              height: 150,
+              width: 300,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      widget.nfts.images,
+                    ),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20))),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          widget.nfts.name,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Floor : ${widget.nfts.floor}ETH",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Total Volume : ${widget.nfts.volume}ETH",
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      wishListBool = !wishListBool;
+                    });
+                  },
+                  child: wishListBool == false
+                      ? Icon(
+                          Icons.favorite_outline,
+                          color: Colors.black,
+                        )
+                      : Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  
+ */

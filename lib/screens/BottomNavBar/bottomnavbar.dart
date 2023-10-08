@@ -1,7 +1,7 @@
 import 'package:collectiverse/screens/cart.dart';
 import 'package:collectiverse/screens/homescreen/components/homescreen.dart';
 import 'package:collectiverse/screens/profile.dart';
-import 'package:collectiverse/screens/wishlist.dart';
+import 'package:collectiverse/screens/wishlist/wishlist.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:floating_navigation_bar/floating_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +26,30 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: false,
+      appBar: _index == 0
+          ? null
+          : AppBar(
+              centerTitle: true,
+              backgroundColor: Colors.white,
+              toolbarHeight: _index == 0 ? 80 : null,
+              title: _index == 1
+                  ? const Text(
+                      'WishList',
+                      style: TextStyle(fontSize: 22, color: Colors.black),
+                    )
+                  : _index == 2
+                      ? const Text(
+                          'Profile',
+                          style: TextStyle(fontSize: 22, color: Colors.black),
+                        )
+                      : null,
+              automaticallyImplyLeading: false,
+            ),
       body: Stack(
         children: [
           Center(
             child: widgetOptions.elementAt(_index),
           ),
-         
-
           Align(
             alignment: Alignment.bottomCenter,
             child: Theme(
