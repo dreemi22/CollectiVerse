@@ -37,12 +37,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       'WishList',
                       style: TextStyle(fontSize: 22, color: Colors.black),
                     )
-                  : _index == 2
-                      ? const Text(
-                          'Profile',
-                          style: TextStyle(fontSize: 22, color: Colors.black),
-                        )
-                      : null,
+                  : null,
               automaticallyImplyLeading: false,
             ),
       body: Stack(
@@ -80,7 +75,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   List<Widget> widgetOptions = const <Widget>[
     HomeScreen(),
     WishList(),
-    CartScreen(),
     ProfileScreen(),
   ];
 }

@@ -1,4 +1,5 @@
 import 'package:collectiverse/screens/BottomNavBar/bottomnavbar.dart';
+import 'package:collectiverse/screens/ConnectWallet/authenticatewallet.dart';
 import 'package:collectiverse/screens/background/background.dart';
 import 'package:flutter/material.dart';
 
@@ -78,11 +79,11 @@ class _BodyState extends State<Body> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BottomNavBar(),
+                          builder: (context) => AuthenticateWallet(),
                         ));
                   },
                   child: Text(
-                    'Skip for now',
+                    'Already have an Account',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 22,

@@ -101,7 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            
             SizedBox(
               height: 10,
             ),
@@ -304,6 +303,7 @@ class _ProductCardState extends State<ProductCard> {
           child: Column(
             children: [
               Container(
+                constraints: BoxConstraints(maxWidth: widget.width),
                 height: 150,
                 width: 195,
                 decoration: BoxDecoration(
